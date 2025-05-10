@@ -48,6 +48,16 @@ function onInput(event: Event) {
     transition: border-color 0.2s, color 0.2s;
     text-align: center;
 
+    &[type='number'] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
     &:focus {
       border-bottom: 2px solid $highlight-color;
     }
