@@ -1,7 +1,7 @@
 <template>
   <div class="mb-input">
     <input
-      type="text"
+      :type="type"
       :placeholder="placeholder"
       :value="modelValue"
       @input="onInput"
@@ -16,6 +16,10 @@ import { defineProps, defineEmits } from 'vue';
 const props = defineProps({
   modelValue: String,
   placeholder: String,
+  type: {
+    type: String,
+    default: 'text',
+  },
 });
 const emit = defineEmits(['update:modelValue']);
 
