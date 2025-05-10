@@ -56,14 +56,14 @@ const income = ref(null);
 const name = ref(null);
 const goals = ref(null);
 
-const startCalculation = () => {
+function startCalculation() {
   store.setUser({
     name: name.value,
     income: income.value,
     goals: goals.value,
   });
   router.push('/home');
-};
+}
 </script>
 
 <style lang="scss">
