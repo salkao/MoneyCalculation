@@ -46,9 +46,11 @@
 <script setup lang="ts">
 import MbInput from '@/components/elements/MbInput.vue';
 import { useBudgetStore } from '@/stores/budget';
+import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
 const store = useBudgetStore();
+const router = useRouter();
 
 const income = ref(null);
 const name = ref(null);
@@ -60,6 +62,7 @@ const startCalculation = () => {
     income: income.value,
     goals: goals.value,
   });
+  router.push('/home');
 };
 </script>
 
