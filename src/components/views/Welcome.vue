@@ -18,17 +18,25 @@
         </div>
         <div class="welcome-form flex-center">
           <MbInput
+            v-model="income"
             class="welcome-input"
             :placeholder="'Insert Your Income'"
             type="number"
           />
-          <MbInput class="welcome-input" :placeholder="'Insert Your Name'" />
           <MbInput
+            v-model="name"
+            class="welcome-input"
+            :placeholder="'Insert Your Name'"
+          />
+          <MbInput
+            v-model="goals"
             class="welcome-input"
             :placeholder="'Insert Your Goals'"
             type="number"
           />
-          <button class="welcome-button">Start Your Calculation</button>
+          <button class="welcome-button" @click="startCalculation">
+            Start Your Calculation
+          </button>
         </div>
       </div>
     </div>
@@ -37,6 +45,22 @@
 
 <script setup lang="ts">
 import MbInput from '@/components/elements/MbInput.vue';
+import { useBudgetStore } from '@/stores/budget';
+import { ref } from 'vue';
+
+const store = useBudgetStore();
+
+const income = ref(null);
+const name = ref(null);
+const goals = ref(null);
+
+const startCalculation = () => {
+  store.setUser({
+    name: name.value,
+    income: income.value,
+    goals: goals.value,
+  });
+};
 </script>
 
 <style lang="scss">
