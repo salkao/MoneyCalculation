@@ -17,9 +17,17 @@
           <span class="welcome-title text-lg text-highlight">Budget</span>
         </div>
         <div class="welcome-form flex-center">
-          <MbInput class="welcome-input" :placeholder="'Insert Your Income'" />
+          <MbInput
+            class="welcome-input"
+            :placeholder="'Insert Your Income'"
+            type="number"
+          />
           <MbInput class="welcome-input" :placeholder="'Insert Your Name'" />
-          <MbInput class="welcome-input" :placeholder="'Insert Your Goals'" />
+          <MbInput
+            class="welcome-input"
+            :placeholder="'Insert Your Goals'"
+            type="number"
+          />
           <button class="welcome-button">Start Your Calculation</button>
         </div>
       </div>
