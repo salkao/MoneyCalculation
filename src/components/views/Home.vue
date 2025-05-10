@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <h1>Home</h1>
+  <div class="home-container">
+    <Header />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Header from '@/components/widgets/Header.vue';
+</script>
 
-<style></style>
+<style lang="scss">
+.home-container {
+  display: flex;
+  background-color: $primary-color;
+}
+</style>
