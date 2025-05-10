@@ -1,0 +1,54 @@
+@import 'variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior-x: none;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  font-family: $font-family-base;
+  --x-height-multiplier: 0.375;
+  --baseline-multiplier: 0.17;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+// Positioning
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Typography
+.text-lg {
+  font-size: 60px
+}
+.text-highlight {
+  color: $highlight-color;
+}
