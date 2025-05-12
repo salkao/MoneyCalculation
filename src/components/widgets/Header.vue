@@ -11,7 +11,11 @@
       </div>
     </div>
     <div class="header-actions-container">
-      <MbButton label="New Expense" class="new-expense-button" />
+      <MbButton
+        label="New Expense"
+        class="new-expense-button"
+        @click="openModal"
+      />
       <span class="header-user-text">Welcome {{ user.name }}</span>
     </div>
   </div>
@@ -24,6 +28,10 @@ import MbButton from '@/components/elements/MbButton.vue';
 
 const store = useBudgetStore();
 const user = computed(() => store.user);
+
+function openModal() {
+  store.setIsModalOpen(true);
+}
 </script>
 
 <style lang="scss">

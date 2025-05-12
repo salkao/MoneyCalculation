@@ -3,7 +3,9 @@
     <input
       :type="type"
       :placeholder="placeholder"
-      :value="modelValue"
+      :value="type === 'date' ? modelValue || defaultDate : modelValue"
+      :min="min"
+      :max="max"
       @input="onInput"
       class="mb-input-field"
     />
@@ -11,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const props = defineProps({
   modelValue: String,
   placeholder: String,
@@ -18,7 +22,21 @@ const props = defineProps({
     type: String,
     default: 'text',
   },
+  min: {
+    type: String,
+    default: '',
+  },
+  max: {
+    type: String,
+    default: '',
+  },
 });
+
+const defaultDate = computed(() => {
+  const today = new Date();
+  return today.toISOString().split('T')[0];
+});
+
 const emit = defineEmits(['update:modelValue']);
 
 function onInput(event: Event) {
