@@ -32,7 +32,7 @@
             v-model="goals"
             class="welcome-input"
             :placeholder="'Insert Your Goals'"
-            type="string"
+            type="number"
           />
           <button class="welcome-button" @click="startCalculation">
             Start Your Calculation
