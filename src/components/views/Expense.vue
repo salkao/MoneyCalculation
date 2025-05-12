@@ -46,7 +46,6 @@
       <MbButton
         :label="isEditMode ? 'Save Expense' : 'Add Expense'"
         class="expense-submit-btn"
-        @click="handleSubmit"
       />
     </form>
   </div>
