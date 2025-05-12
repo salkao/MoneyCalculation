@@ -4,7 +4,9 @@
       <img class="expense-item-icon" :src="iconSrc" :alt="expense.category" />
       <div class="expense-item-container-description">
         <span class="expense-item-text-title">{{ expense.name }}</span>
-        <span class="expense-item-date">Date: {{ expense.date }}</span>
+        <div class="expense-item-date-container">
+          Date: <span class="expense-item-date">{{ formattedDate }}</span>
+        </div>
       </div>
     </div>
     <span class="expense-item-amount">£{{ expense.amount.toFixed(2) }}</span>
@@ -17,6 +19,14 @@ import { computed } from 'vue';
 const props = defineProps<{
   expense: Expense;
 }>();
+
+const formattedDate = computed(() => {
+  const date = new Date(props.expense.date);
+  const month = date.toLocaleString('default', { month: 'long' });
+  const day = date.getDate();
+  const year = date.getFullYear();
+  return `${month}, ${day}-${year}`;
+});
 
 const iconSrc = computed(() => {
   try {
@@ -56,6 +66,11 @@ const iconSrc = computed(() => {
       .expense-item-text-title {
         font-size: 21px;
         text-transform: capitalize;
+      }
+
+      .expense-item-date {
+        font-size: 15px;
+        font-weight: 700;
       }
     }
   }
