@@ -29,5 +29,13 @@ function onClick() {
   width: 100%;
   padding: 12px 0;
   cursor: pointer;
+
+  &:hover {
+    background-color: darken($button-primary-color, 5%);
+  }
+
+  &.rounded {
+    border-radius: 22px;
+  }
 }
 </style>
