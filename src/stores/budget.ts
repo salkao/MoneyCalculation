@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 interface User {
   name: string;
   income: number;
-  goals: number;
+  goals: string;
 }
 
 export interface Expense {
@@ -24,7 +24,7 @@ export const useBudgetStore = defineStore('budget', {
     user: {
       name: '',
       income: 0,
-      goals: 0,
+      goals: '',
     },
     expenses: [],
   }),
