@@ -20,6 +20,7 @@ export interface BudgetState {
   categories: string[];
   filterCategory: string;
   isModalOpen: boolean;
+  editingExpenseId: string | null;
 }
 
 export const useBudgetStore = defineStore('budget', {
@@ -30,13 +31,13 @@ export const useBudgetStore = defineStore('budget', {
       goals: 0,
     },
     expenses: [
-      // {
-      //   id: '1',
-      //   name: 'Expense 1',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
+      {
+        id: '1',
+        name: 'Expense 1',
+        category: 'food',
+        date: '2021-01-01',
+        amount: 100,
+      },
       // {
       //   id: '2',
       //   name: 'Expense 2',
@@ -136,12 +137,20 @@ export const useBudgetStore = defineStore('budget', {
     ],
     filterCategory: '',
     isModalOpen: false,
+    editingExpenseId: null,
   }),
 
   getters: {
     getExpenses: (state) => state.expenses,
     getCategories: (state) => state.categories,
     getFilterCategory: (state) => state.filterCategory,
+    getIsModalOpen: (state) => state.isModalOpen,
+    getEditingExpense: (state) => {
+      if (!state.editingExpenseId) return null;
+      return (
+        state.expenses.find((e) => e.id === state.editingExpenseId) || null
+      );
+    },
   },
 
   actions: {
@@ -167,6 +176,19 @@ export const useBudgetStore = defineStore('budget', {
       } else {
         this.expenses.push(expense);
       }
+    },
+
+    deleteExpense(id: string) {
+      /*
+        can use findIndex and splice but this is more readable
+        and performances should be the issue
+      */
+      this.expenses = this.expenses.filter((e) => e.id !== id);
+    },
+
+    setEditingExpenseId(id: string) {
+      this.editingExpenseId = id;
+      this.isModalOpen = true;
     },
   },
 });

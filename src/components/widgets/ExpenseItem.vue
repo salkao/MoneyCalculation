@@ -1,5 +1,5 @@
 <template>
-  <div class="expense-item-container">
+  <div @click="handleClick" class="expense-item-container">
     <div class="expense-item-container-left">
       <img class="expense-item-icon" :src="iconSrc" :alt="expense.category" />
       <div class="expense-item-container-description">
@@ -11,14 +11,29 @@
     </div>
     <span class="expense-item-amount">£{{ expense.amount.toFixed(2) }}</span>
   </div>
+  <div v-if="showActions" class="expense-item-actions-container">
+    <div class="expense-item-actions-container-content">
+      <div @click="handleEdit" class="expense-item-actions-container-left">
+        <img src="@/assets/icons/edit.svg" alt="Edit" />
+        <span class="expense-item-actions-container-text">Edit</span>
+      </div>
+      <div @click="handleDelete" class="expense-item-actions-container-right">
+        <img src="@/assets/icons/delete.svg" alt="Delete" />
+        <span class="expense-item-actions-container-text">Delete</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-
+import { computed, ref } from 'vue';
+import { useBudgetStore } from '@/stores/budget';
 const props = defineProps<{
   expense: Expense;
 }>();
+
+const store = useBudgetStore();
+const showActions = ref(false);
 
 const formattedDate = computed(() => {
   const date = new Date(props.expense.date);
@@ -39,6 +54,18 @@ const iconSrc = computed(() => {
     return new URL('../../assets/icons/Various.svg', import.meta.url).href;
   }
 });
+
+function handleClick() {
+  showActions.value = !showActions.value;
+}
+
+function handleEdit() {
+  store.setEditingExpenseId(props.expense.id);
+}
+
+function handleDelete() {
+  store.deleteExpense(props.expense.id);
+}
 </script>
 
 <style lang="scss">
@@ -48,6 +75,11 @@ const iconSrc = computed(() => {
   align-items: center;
   border-top: 1px dotted $primary-color-light;
   padding: 23px 1px 26px 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 1%);
+  }
 
   .expense-item-container-left {
     display: flex;
@@ -78,6 +110,24 @@ const iconSrc = computed(() => {
   .expense-item-amount {
     margin-left: auto;
     font-size: 30px;
+  }
+}
+
+.expense-item-actions-container {
+  $border: 1px dotted $primary-color-light;
+  width: 100%;
+  height: 100%;
+  padding: 7px 4px;
+  border-top: $border;
+  border-bottom: $border;
+
+  .expense-item-actions-container-content {
+    background-color: $box-contrast-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

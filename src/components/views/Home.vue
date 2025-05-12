@@ -7,7 +7,7 @@
     </div>
   </div>
   <div v-if="isModalOpen" class="modal">
-    <Expense @save="handleSaveExpense" />
+    <Expense @save="handleSaveExpense" :expense="expense" />
   </div>
 </template>
 
@@ -21,10 +21,12 @@ import { useBudgetStore } from '@/stores/budget';
 
 const store = useBudgetStore();
 
-const isModalOpen = computed(() => store.isModalOpen);
+const isModalOpen = computed(() => store.getIsModalOpen);
+const expense = computed(() => store.getEditingExpense);
 
 function handleSaveExpense(expense: Expense) {
   store.saveExpense({ id: expense.id || nanoid(), ...expense });
+  store.setEditingExpenseId(null);
   store.setIsModalOpen(false);
 }
 </script>
