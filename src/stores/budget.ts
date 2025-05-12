@@ -10,7 +10,7 @@ export interface Expense {
   id: string;
   name: string;
   category: string;
-  date: string;
+  date?: string;
   amount: number;
 }
 
@@ -21,14 +21,15 @@ export interface BudgetState {
   filterCategory: string;
   isModalOpen: boolean;
   editingExpenseId: string | null;
+  optionalExpenses: Expense[];
 }
 
 export const useBudgetStore = defineStore('budget', {
   state: (): BudgetState => ({
     user: {
-      name: '',
-      income: 0,
-      goals: 0,
+      name: 'Salkao',
+      income: 2700,
+      goals: 100,
     },
     expenses: [
       {
@@ -138,10 +139,43 @@ export const useBudgetStore = defineStore('budget', {
     filterCategory: '',
     isModalOpen: false,
     editingExpenseId: null,
+    optionalExpenses: [
+      {
+        id: 'netflix',
+        name: 'Netflix',
+        category: 'supscription',
+        amount: 100,
+      },
+      {
+        id: 'spotify',
+        name: 'Spotify',
+        category: 'supscription',
+        amount: 100,
+      },
+      {
+        id: 'amazon',
+        name: 'Amazon',
+        category: 'supscription',
+        amount: 100,
+      },
+      {
+        id: 'google',
+        name: 'Google',
+        category: 'supscription',
+        amount: 100,
+      },
+      {
+        id: 'facebook',
+        name: 'Facebook',
+        category: 'supscription',
+        amount: 100,
+      },
+    ],
   }),
 
   getters: {
     getExpenses: (state) => state.expenses,
+    getUser: (state) => state.user,
     getCategories: (state) => state.categories,
     getFilterCategory: (state) => state.filterCategory,
     getIsModalOpen: (state) => state.isModalOpen,
@@ -151,6 +185,7 @@ export const useBudgetStore = defineStore('budget', {
         state.expenses.find((e) => e.id === state.editingExpenseId) || null
       );
     },
+    getOptionalExpenses: (state) => state.optionalExpenses,
   },
 
   actions: {
