@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useBudgetStore } from '@/stores/budget';
+import { resolveIconPath } from '@/utilities/resolveIconPath';
 const props = defineProps<{
   expense: Expense;
 }>();
@@ -45,13 +46,10 @@ const formattedDate = computed(() => {
 
 const iconSrc = computed(() => {
   try {
-    return new URL(
-      `../../assets/icons/${props.expense.category}.svg`,
-      import.meta.url
-    ).href;
+    return resolveIconPath(props.expense.category);
   } catch {
     // Fallback to a default icon if the category icon doesn't exist
-    return new URL('../../assets/icons/Various.svg', import.meta.url).href;
+    return resolveIconPath('Various');
   }
 });
 
