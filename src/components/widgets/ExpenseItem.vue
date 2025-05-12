@@ -122,7 +122,7 @@ function handleDelete() {
   border-bottom: $border;
 
   .expense-item-actions-container-content {
-    background-color: $box-contrast-color;
+    background-color: $secondary-color;
     display: flex;
     align-items: center;
     justify-content: center;
