@@ -29,7 +29,7 @@
           <span class="percent__int">{{ value }}</span>
           <span class="percent_sign">%</span>
         </slot>
-        <div class="percent__label">spent</div>
+        <div class="percent__label">Spent</div>
       </div>
     </div>
     <slot name="footer" />
@@ -115,21 +115,29 @@ watch(
     transform: translate(-50%, -50%);
     text-align: center;
 
-    &__int {
-      font-size: 2rem;
-      font-weight: bold;
-      line-height: 1;
-    }
-
+    &__int,
     .percent_sign {
-      font-size: 2rem;
+      font-size: 37px;
+      font-weight: 400;
       line-height: 1;
     }
 
     &__label {
       margin-top: 0.25em;
-      font-size: 1rem;
+      font-size: 18px;
       color: #666;
+    }
+  }
+}
+
+// desktop
+@media (min-width: 1024px) {
+  .circular-progress {
+    .percent {
+      &__int,
+      .percent_sign {
+        font-size: 42px;
+      }
     }
   }
 }
