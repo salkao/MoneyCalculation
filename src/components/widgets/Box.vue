@@ -5,6 +5,8 @@
       <h3>{{ contentTitle }}</h3>
       <slot name="content"></slot>
     </div>
+    <slot name="main"></slot>
+    <slot name="footer"></slot>
   </div>
 </template>
 
@@ -26,6 +28,8 @@ defineProps<{
   }
   .box-content {
     background-color: $secondary-color;
+    border-radius: 4px;
+    box-shadow: 0px 4px 15px 0px #0000000d;
   }
 }
 </style>
