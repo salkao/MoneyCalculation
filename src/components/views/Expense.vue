@@ -131,6 +131,7 @@ function closeModal() {
   position: relative;
   background-color: $primary-color;
   padding: 106px 27px;
+  width: 100%;
 
   .close-icon {
     position: absolute;
