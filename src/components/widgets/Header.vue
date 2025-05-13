@@ -1,22 +1,24 @@
 <template>
   <div class="header-container">
-    <div class="header-logo-container">
-      <img src="@/assets/icons/logo.png" alt="logo" class="header-logo" />
-      <div class="header-title-container">
-        <span class="header-sub-title-text">Expenses</span>
-        <div class="header-title text-lg">
-          <span>Monthly</span>
-          <span class="text-highlight">Budget</span>
+    <div class="header-content">
+      <div class="header-logo-container">
+        <img src="@/assets/icons/logo.png" alt="logo" class="header-logo" />
+        <div class="header-title-container">
+          <span class="header-sub-title-text">Expenses</span>
+          <div class="header-title">
+            <span>Monthly</span>
+            <span class="text-highlight">Budget</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="header-actions-container">
-      <MbButton
-        label="New Expense"
-        class="new-expense-button"
-        @click="openModal"
-      />
-      <span class="header-user-text">Welcome {{ user.name }}</span>
+      <div class="header-actions-container">
+        <MbButton
+          label="New Expense"
+          class="new-expense-button"
+          @click="openModal"
+        />
+        <span class="header-user-text">Welcome {{ user.name }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -43,38 +45,57 @@ function openModal() {
 }
 
 .header-container {
-  justify-content: space-between;
-  width: 100%;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 29px 32px 24px 32px;
 
-  .header-title-container {
-    display: flex;
-    flex-direction: column;
-    color: $primary-color-light;
+  .header-content {
+    border-bottom: 1px solid $secondary-color;
+    width: 100%;
+    padding-bottom: 24px;
 
-    .header-title {
-      font-weight: 800;
-      line-height: 50px;
+    .header-logo-container {
+      .header-logo {
+        width: 33px;
+        height: 36px;
+      }
     }
 
-    .header-sub-title-text {
-      font-size: 14px;
-      color: $button-primary-color;
-    }
-  }
-
-  .header-actions-container {
-    height: 100%;
-    margin-left: auto;
-
-    .new-expense-button {
-      width: 223px;
-      font-weight: 600;
-    }
-
-    .header-user-text {
-      font-size: 21px;
-      font-weight: 600;
+    .header-title-container {
+      display: flex;
+      flex-direction: column;
       color: $primary-color-light;
+
+      .header-title {
+        font-weight: normal;
+        line-height: 31px;
+      }
+
+      .header-sub-title-text {
+        font-size: 11px;
+        color: $button-primary-color;
+      }
+    }
+
+    .header-actions-container {
+      margin-top: 14px;
+
+      .new-expense-button {
+        width: 223px;
+        font-weight: 600;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+      }
+
+      .header-user-text {
+        font-size: 20px;
+        font-weight: normal;
+        color: $primary-color-light;
+      }
     }
   }
 }
