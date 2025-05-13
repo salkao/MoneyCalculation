@@ -36,14 +36,13 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, watch, onBeforeUnmount } from 'vue';
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue';
 
 const props = defineProps({
   value: {
     type: [Number, String],
     default: 0,
-    validator: (v) => !isNaN(+v) && +v <= 100,
   },
   transitionDuration: { type: Number, default: 1000 },
   backgroundOpacity: { type: Number, default: 1 },
@@ -68,7 +67,7 @@ const fillStyle = computed(() => ({
   stroke: props.color,
 }));
 
-function updateArc(v) {
+function updateArc(v: string | number) {
   const n = +v;
   if (props.resetOnNewValue) offset.value = C;
   // next frame so transition applies
