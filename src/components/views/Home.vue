@@ -100,7 +100,7 @@ function handleSaveExpense(expense: Expense) {
       padding: 0 40px;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 37px;
 
       .user-income-data {
         font-size: 26px;
