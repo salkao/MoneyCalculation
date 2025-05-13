@@ -47,7 +47,6 @@ const handleSaveExpense = () => {
     font-size: 11px;
     font-weight: normal;
     text-transform: uppercase;
-    letter-spacing: 9%;
     margin-left: 11px;
   }
 
