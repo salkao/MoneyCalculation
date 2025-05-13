@@ -48,4 +48,17 @@ defineProps<{
     color: $button-primary-color;
   }
 }
+
+// desktop
+@media (min-width: 1024px) {
+  .mb-card {
+    .mb-card-title {
+      font-size: 13px;
+    }
+
+    .mb-card-value {
+      font-size: 21px;
+    }
+  }
+}
 </style>
