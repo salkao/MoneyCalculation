@@ -82,6 +82,7 @@ function handleSaveExpense(expense: Expense) {
 </script>
 
 <style lang="scss">
+// mobile
 .home-container {
   display: flex;
   flex-direction: column;
@@ -135,6 +136,22 @@ function handleSaveExpense(expense: Expense) {
         border-bottom: none;
         border-top: $border-dotted;
         padding-top: 13px;
+      }
+    }
+  }
+}
+
+// tablet
+@media (min-width: 768px) {
+  .home-container {
+    .home-content-container {
+      .home-content-container-data {
+        flex-direction: row;
+        gap: 58px;
+
+        .box {
+          flex: 1;
+        }
       }
     }
   }
