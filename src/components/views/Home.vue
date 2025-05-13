@@ -118,6 +118,7 @@ function handleSaveExpense(expense: Expense) {
 
       .mb-button-reset {
         margin-top: 24px;
+        font-size: 19px;
       }
 
       .box-content-data {
@@ -160,6 +161,7 @@ function handleSaveExpense(expense: Expense) {
 // desktop
 @media (min-width: 1024px) {
   .home-container {
+    overflow: hidden;
     .home-content-container {
       flex-direction: row-reverse;
       flex: 1;
@@ -171,6 +173,14 @@ function handleSaveExpense(expense: Expense) {
 
         .box {
           height: fit-content;
+        }
+
+        .user-income-data {
+          font-size: 30px;
+        }
+
+        .mb-button-reset {
+          font-size: 21px;
         }
       }
     }
