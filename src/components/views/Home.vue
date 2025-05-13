@@ -156,4 +156,13 @@ function handleSaveExpense(expense: Expense) {
     }
   }
 }
+
+// desktop
+@media (min-width: 1024px) {
+  .home-container {
+    .home-content-container {
+      flex-direction: row-reverse;
+    }
+  }
+}
 </style>
