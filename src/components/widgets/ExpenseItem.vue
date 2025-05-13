@@ -13,14 +13,18 @@
   </div>
   <div v-if="showActions" class="expense-item-actions-container">
     <div class="expense-item-actions-container-content">
-      <div @click="handleEdit" class="expense-item-actions-container-left">
-        <img src="@/assets/icons/edit.svg" alt="Edit" />
-        <span class="expense-item-actions-container-text">Edit</span>
-      </div>
-      <div @click="handleDelete" class="expense-item-actions-container-right">
-        <img src="@/assets/icons/delete.svg" alt="Delete" />
-        <span class="expense-item-actions-container-text">Delete</span>
-      </div>
+      <MbButton
+        class="transparent success"
+        label="Edit"
+        icon="edit"
+        @click="handleEdit"
+      />
+      <MbButton
+        class="transparent error"
+        label="Delete"
+        icon="delete"
+        @click="handleDelete"
+      />
     </div>
   </div>
 </template>
@@ -29,6 +33,8 @@
 import { computed, ref } from 'vue';
 import { useBudgetStore } from '@/stores/budget';
 import { resolveIconPath } from '@/utilities/resolveIconPath';
+import MbButton from '@/components/elements/MbButton.vue';
+
 const props = defineProps<{
   expense: Expense;
 }>();
@@ -117,7 +123,6 @@ function handleDelete() {
 
 .expense-item-actions-container {
   width: 100%;
-  height: 100%;
   padding: 7px 4px;
   border-top: $border-dotted;
   border-bottom: $border-dotted;
@@ -129,6 +134,7 @@ function handleDelete() {
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 31px 0;
   }
 }
 </style>
