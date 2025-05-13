@@ -2,6 +2,11 @@
   <div class="list-of-expenses-container">
     <div class="list-of-expenses-header">
       <span class="list-of-expenses-header-text">Description</span>
+      <MbDropdown
+        :items="['all', ...store.getCategories]"
+        label="Filter Expenses"
+        @select="handleCategorySelect"
+      />
     </div>
     <div v-if="noExpenses" class="list-of-expenses-empty">
       <div class="list-of-expenses-title-container">
@@ -35,11 +40,16 @@
 import { computed } from 'vue';
 import { useBudgetStore } from '@/stores/budget';
 import ExpenseItem from '@/components/widgets/ExpenseItem.vue';
+import MbDropdown from '@/components/elements/MbDropdown.vue';
 
 const store = useBudgetStore();
 
 const expenses = computed(() => store.getExpenses);
 const noExpenses = computed(() => expenses.value.length === 0);
+
+function handleCategorySelect(category: string) {
+  store.setFilterCategory(category);
+}
 </script>
 
 <style lang="scss">
@@ -49,6 +59,11 @@ const noExpenses = computed(() => expenses.value.length === 0);
   padding: 0 31px;
 
   .list-of-expenses-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+
     .list-of-expenses-header-text {
       color: $button-primary-color;
       font-size: 15px;
@@ -95,6 +110,10 @@ const noExpenses = computed(() => expenses.value.length === 0);
   .list-of-expenses-container {
     flex: 1;
     padding: 0 0 0 32px;
+    .list-of-expenses-list {
+      height: calc(100% - 56px - 22px);
+      overflow-y: auto;
+    }
   }
 }
 </style>

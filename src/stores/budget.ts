@@ -136,7 +136,7 @@ export const useBudgetStore = defineStore('budget', {
       'supscription',
       'various',
     ],
-    filterCategory: '',
+    filterCategory: 'all',
     isModalOpen: false,
     editingExpenseId: null,
     optionalExpenses: [
@@ -174,7 +174,11 @@ export const useBudgetStore = defineStore('budget', {
   }),
 
   getters: {
-    getExpenses: (state) => state.expenses,
+    // return all expenses based on the filter category
+    getExpenses: (state) => {
+      if (state.filterCategory === 'all') return state.expenses;
+      return state.expenses.filter((e) => e.category === state.filterCategory);
+    },
     getUser: (state) => state.user,
     getCategories: (state) => state.categories,
     getFilterCategory: (state) => state.filterCategory,
@@ -218,7 +222,7 @@ export const useBudgetStore = defineStore('budget', {
 
     deleteExpense(id: string) {
       /*
-        can use findIndex and splice but this is more readable
+        could use findIndex and splice but this is more readable
         and performances should be the issue
       */
       this.expenses = this.expenses.filter((e) => e.id !== id);
