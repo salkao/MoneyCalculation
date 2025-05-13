@@ -17,7 +17,11 @@
           class="new-expense-button"
           @click="openModal"
         />
-        <span class="header-user-text">Welcome {{ user.name }}</span>
+        <MbButton
+          class="user-button transparent"
+          :label="buttonLabel"
+          :icon="'user'"
+        />
       </div>
     </div>
   </div>
@@ -29,7 +33,10 @@ import { useBudgetStore } from '@/stores/budget';
 import MbButton from '@/components/elements/MbButton.vue';
 
 const store = useBudgetStore();
-const user = computed(() => store.user);
+
+const user = computed(() => store.getUser);
+const userName = computed(() => user.value.name);
+const buttonLabel = computed(() => `Welcome ${userName.value}`);
 
 function openModal() {
   store.setIsModalOpen(true);
@@ -82,7 +89,6 @@ function openModal() {
       margin-top: 14px;
 
       .new-expense-button {
-        width: 223px;
         font-weight: 600;
         position: absolute;
         bottom: 0;
@@ -92,7 +98,7 @@ function openModal() {
         border-radius: 50%;
       }
 
-      .header-user-text {
+      .user-button {
         font-size: 20px;
         font-weight: normal;
         color: $primary-color-light;
@@ -133,6 +139,54 @@ function openModal() {
           position: absolute;
           padding: 10px 0;
           top: 0;
+        }
+      }
+    }
+  }
+}
+
+// desktop
+@media (min-width: 1024px) {
+  .header-container {
+    padding: 33px 40px 24px 24px;
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      .header-logo-container {
+        align-items: center;
+        .header-logo {
+          height: 96px;
+          width: 96px;
+        }
+
+        .header-title-container {
+          .header-sub-title-text {
+            font-size: 21px;
+            font-weight: 600;
+          }
+          .header-title {
+            font-size: 60px;
+            line-height: 100%;
+            font-weight: 800;
+          }
+        }
+      }
+      .header-actions-container {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+
+        .new-expense-button {
+          font-weight: 600;
+          position: static;
+          width: 223px;
+          height: 48px;
+        }
+
+        .user-button {
+          width: 248px;
+          font-weight: 600;
+          color: $primary-color-light;
         }
       }
     }
