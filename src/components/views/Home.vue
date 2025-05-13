@@ -170,6 +170,7 @@ function handleSaveExpense(expense: Expense) {
 
       .home-content-container-data {
         flex: 1;
+        gap: 42px;
 
         .box {
           height: fit-content;
