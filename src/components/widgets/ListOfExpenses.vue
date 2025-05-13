@@ -43,7 +43,7 @@ const noExpenses = computed(() => expenses.value.length === 0);
 .list-of-expenses-container {
   display: flex;
   flex-direction: column;
-  padding: 0 40px;
+  padding: 0 31px;
 
   .list-of-expenses-header {
     .list-of-expenses-header-text {
@@ -74,6 +74,13 @@ const noExpenses = computed(() => expenses.value.length === 0);
     .list-of-expenses-empty-image {
       margin-top: 35px;
     }
+  }
+}
+
+// tablet
+@media (min-width: 768px) {
+  .list-of-expenses-container {
+    padding: 0 80px;
   }
 }
 </style>
