@@ -77,6 +77,7 @@ function openModal() {
       .header-title {
         font-weight: normal;
         line-height: 31px;
+        font-size: 30px;
       }
 
       .header-sub-title-text {
@@ -100,8 +101,14 @@ function openModal() {
 
       .user-button {
         font-size: 20px;
+        padding: 0;
+        width: fit-content;
         font-weight: normal;
         color: $primary-color-light;
+
+        img {
+          display: none;
+        }
       }
     }
   }
@@ -187,6 +194,11 @@ function openModal() {
           width: 248px;
           font-weight: 600;
           color: $primary-color-light;
+
+          img {
+            display: block;
+            margin-right: 6px;
+          }
         }
       }
     }
