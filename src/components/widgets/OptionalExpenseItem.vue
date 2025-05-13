@@ -17,6 +17,7 @@ import type { Expense as ExpenseType } from '@/stores/budget';
 import { resolveIconPath } from '@/utilities/resolveIconPath';
 import MbButton from '@/components/elements/MbButton.vue';
 import { useBudgetStore } from '@/stores/budget';
+import { nanoid } from 'nanoid';
 const props = defineProps<{
   expense: ExpenseType;
 }>();
@@ -26,6 +27,11 @@ const store = useBudgetStore();
 const handleSaveExpense = () => {
   store.saveExpense({
     ...props.expense,
+    /*
+      use can add multiple optional expenses
+      so we need to add a unique id to override the defult one.
+    */
+    id: nanoid(),
     date: new Date().toISOString(),
   });
 };
