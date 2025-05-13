@@ -43,12 +43,14 @@ const noExpenses = computed(() => expenses.value.length === 0);
 .list-of-expenses-container {
   display: flex;
   flex-direction: column;
+  padding: 0 40px;
 
   .list-of-expenses-header {
     .list-of-expenses-header-text {
       color: $button-primary-color;
-      font-size: 21px;
+      font-size: 15px;
       font-weight: 400px;
+      letter-spacing: 0;
     }
   }
   .list-of-expenses-empty {

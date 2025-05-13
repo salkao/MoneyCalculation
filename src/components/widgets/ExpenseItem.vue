@@ -85,7 +85,9 @@ function handleDelete() {
     justify-content: center;
 
     .expense-item-icon {
-      margin-right: 17px;
+      margin-right: 12px;
+      width: 39px;
+      height: 39px;
     }
 
     .expense-item-container-description {
@@ -98,9 +100,11 @@ function handleDelete() {
         text-transform: capitalize;
       }
 
-      .expense-item-date {
-        font-size: 15px;
-        font-weight: 700;
+      .expense-item-date-container {
+        font-size: 12px;
+        .expense-item-date {
+          font-weight: 700;
+        }
       }
     }
   }
