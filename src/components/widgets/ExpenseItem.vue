@@ -73,6 +73,7 @@ function handleDelete() {
 </script>
 
 <style lang="scss">
+// mobile
 .expense-item-container {
   display: flex;
   color: $primary-color-light;
@@ -135,6 +136,19 @@ function handleDelete() {
     width: 100%;
     height: 100%;
     padding: 31px 0;
+  }
+}
+
+// tablet
+@media (min-width: 768px) {
+  .expense-item-container {
+    .expense-item-container-left {
+      .expense-item-icon {
+        width: 54px;
+        height: 54px;
+        margin-right: 17px;
+      }
+    }
   }
 }
 </style>
