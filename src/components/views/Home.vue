@@ -162,6 +162,17 @@ function handleSaveExpense(expense: Expense) {
   .home-container {
     .home-content-container {
       flex-direction: row-reverse;
+      flex: 1;
+      padding-bottom: 87px;
+      padding-top: 56px;
+
+      .home-content-container-data {
+        flex: 1;
+
+        .box {
+          height: fit-content;
+        }
+      }
     }
   }
 }
