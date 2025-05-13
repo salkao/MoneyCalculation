@@ -37,6 +37,7 @@ function openModal() {
 </script>
 
 <style lang="scss">
+// mobile
 .header-container,
 .header-logo-container,
 .header-actions-container {
@@ -95,6 +96,44 @@ function openModal() {
         font-size: 20px;
         font-weight: normal;
         color: $primary-color-light;
+      }
+    }
+  }
+}
+
+// tablet
+@media (min-width: 768px) {
+  .header-container {
+    .header-content {
+      position: relative;
+      .header-logo-container {
+        align-items: flex-start;
+        .header-logo {
+          height: 48px;
+          width: 43px;
+        }
+        .header-title-container {
+          .header-sub-title-text {
+            font-size: 14px;
+          }
+          .header-title {
+            font-size: 40px;
+          }
+        }
+      }
+
+      .header-actions-container {
+        margin-top: 19px;
+
+        .new-expense-button {
+          width: 175px;
+          height: 42px;
+          border-radius: 3px;
+          font-weight: normal;
+          position: absolute;
+          padding: 10px 0;
+          top: 0;
+        }
       }
     }
   }
