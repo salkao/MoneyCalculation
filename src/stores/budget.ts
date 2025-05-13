@@ -186,6 +186,9 @@ export const useBudgetStore = defineStore('budget', {
       );
     },
     getOptionalExpenses: (state) => state.optionalExpenses,
+    getTotalExpenses: (state) => {
+      return state.expenses.reduce((acc, expense) => acc + expense.amount, 0);
+    },
   },
 
   actions: {
@@ -221,9 +224,13 @@ export const useBudgetStore = defineStore('budget', {
       this.expenses = this.expenses.filter((e) => e.id !== id);
     },
 
-    setEditingExpenseId(id: string) {
+    setEditingExpenseId(id: string | null) {
       this.editingExpenseId = id;
       this.isModalOpen = true;
+    },
+
+    resetExpenses() {
+      this.expenses = [];
     },
   },
 });

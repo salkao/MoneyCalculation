@@ -5,15 +5,25 @@
       <div class="home-content-container-data">
         <Box :title="'Calculation'" :content-title="'Income'">
           <template #content>
-            <div class="box-content-data">
-              <h3>{{ user.income }}</h3>
-            </div>
+            <h3 class="user-income-data">£{{ user.income }}</h3>
           </template>
           <template #main>
             <CircularProgress :value="totalExpensesPercentage" />
+            <div class="mb-card-container">
+              <MbCard
+                class="green"
+                title="Available"
+                :value="availableBalance"
+              />
+              <MbCard title="Spent" :value="store.getTotalExpenses" />
+            </div>
           </template>
           <template #footer>
-            <MbButton @click="store.resetExpenses" label="Reset Expenses" />
+            <MbButton
+              @click="store.resetExpenses"
+              class="mb-button-reset"
+              label="Reset Expenses"
+            />
           </template>
         </Box>
         <Box :title="'Optionals'" :content-title="'choose any fix expenses'">
@@ -27,7 +37,7 @@
             </div>
           </template>
           <template #footer>
-            <h2>Goals</h2>
+            <h2 class="box-title goals-title">Goals</h2>
           </template>
         </Box>
       </div>
@@ -50,12 +60,15 @@ import Box from '@/components/widgets/Box.vue';
 import OptionalExpenseItem from '@/components/widgets/OptionalExpenseItem.vue';
 import CircularProgress from '@/components/widgets/CircularProgress.vue';
 import MbButton from '@/components/elements/MbButton.vue';
-
+import MbCard from '@/components/widgets/MbCard.vue';
 const store = useBudgetStore();
 
 const isModalOpen = computed(() => store.getIsModalOpen);
 const expense = computed(() => store.getEditingExpense);
 const user = computed(() => store.getUser);
+const availableBalance = computed(
+  () => store.getUser.income - store.getTotalExpenses
+);
 
 const totalExpensesPercentage = computed(() => {
   return ((store.getTotalExpenses / store.getUser.income) * 100).toFixed(0);
@@ -83,11 +96,46 @@ function handleSaveExpense(expense: Expense) {
     width: 100%;
 
     .home-content-container-data {
-      // padding in the desing is 43px left and 38 right it makes sense to use the same padding
+      // padding in the design is 43px left and 38 right it makes sense to use the same padding
       padding: 0 40px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
+      .user-income-data {
+        font-size: 26px;
+        color: $primary-color;
+        font-weight: 400;
+      }
+
+      .mb-card-container {
+        border-bottom: $border-dotted;
+        padding-bottom: 24px;
+        display: flex;
+        gap: 8px;
+      }
+
+      .mb-button-reset {
+        margin-top: 24px;
+      }
+
+      .box-content-data {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 24px;
+        width: 100%;
+      }
+
+      .box-content {
+        margin-bottom: 21px;
+      }
+
+      .goals-title {
+        border-bottom: none;
+        border-top: $border-dotted;
+        padding-top: 13px;
+      }
     }
   }
 }

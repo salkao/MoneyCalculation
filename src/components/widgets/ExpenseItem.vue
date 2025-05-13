@@ -71,7 +71,7 @@ function handleDelete() {
   display: flex;
   color: $primary-color-light;
   align-items: center;
-  border-top: 1px dotted $primary-color-light;
+  border-top: $border-dotted;
   padding: 23px 1px 26px 3px;
   cursor: pointer;
 
@@ -112,12 +112,11 @@ function handleDelete() {
 }
 
 .expense-item-actions-container {
-  $border: 1px dotted $primary-color-light;
   width: 100%;
   height: 100%;
   padding: 7px 4px;
-  border-top: $border;
-  border-bottom: $border;
+  border-top: $border-dotted;
+  border-bottom: $border-dotted;
 
   .expense-item-actions-container-content {
     background-color: $secondary-color;

@@ -3,25 +3,47 @@
     <div class="optional-expense-icon-container">
       <img :src="resolveIconPath(expense.id)" alt="expense" />
     </div>
-    <h3>{{ expense.name }}</h3>
-    <MbButton label="select" class="optional-expense-item-button rounded" />
+    <h3 class="optional-expense-item-name">{{ expense.name }}</h3>
+    <MbButton
+      @click="handleSaveExpense"
+      label="select"
+      class="optional-expense-item-button rounded"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Expense } from '@/stores/budget';
+import type { Expense as ExpenseType } from '@/stores/budget';
 import { resolveIconPath } from '@/utilities/resolveIconPath';
 import MbButton from '@/components/elements/MbButton.vue';
-
-defineProps<{
-  expense: Expense;
+import { useBudgetStore } from '@/stores/budget';
+const props = defineProps<{
+  expense: ExpenseType;
 }>();
+
+const store = useBudgetStore();
+
+const handleSaveExpense = () => {
+  store.saveExpense({
+    ...props.expense,
+    date: new Date().toISOString(),
+  });
+};
 </script>
 
 <style lang="scss">
 .optional-expense-item {
   display: flex;
   align-items: center;
+  width: 100%;
+
+  .optional-expense-item-name {
+    font-size: 11px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 9%;
+    margin-left: 11px;
+  }
 
   .optional-expense-icon-container {
     display: flex;
@@ -41,9 +63,11 @@ defineProps<{
   .optional-expense-item-button {
     flex-grow: 0;
     width: auto;
-    padding: 0 12px;
+    padding: 2px 12px;
     background-color: $highlight-color;
     margin-left: auto;
+    font-size: 12px;
+    font-weight: 700;
   }
 }
 </style>
