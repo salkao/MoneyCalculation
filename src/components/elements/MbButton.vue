@@ -1,14 +1,21 @@
 <template>
   <button @click="onClick" class="mb-button">
+    <img v-if="icon" :src="resolveIconPath(icon)" alt="icon" />
     {{ label }}
   </button>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+import { resolveIconPath } from '@/utilities/resolveIconPath';
+defineProps({
   label: {
     type: String,
     required: true,
+  },
+  icon: {
+    type: String,
+    required: false,
+    default: '',
   },
 });
 
@@ -29,6 +36,9 @@ function onClick() {
   width: 100%;
   padding: 12px 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-color: darken($button-primary-color, 5%);
@@ -36,6 +46,18 @@ function onClick() {
 
   &.rounded {
     border-radius: 22px;
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
+
+  &.success {
+    color: $success-color;
+  }
+
+  &.error {
+    color: $error-color;
   }
 }
 </style>
