@@ -18,6 +18,7 @@ defineProps<{
 </script>
 
 <style lang="scss">
+// mobile
 .box {
   border-radius: 3px;
   background-color: $box-color;
@@ -42,6 +43,20 @@ defineProps<{
       font-size: 11px;
       text-transform: uppercase;
       font-weight: 700;
+    }
+  }
+}
+
+// desktop
+@media (min-width: 1024px) {
+  .box {
+    .box-title {
+      font-size: 30px;
+    }
+    .box-content {
+      .box-content-title {
+        font-size: 13px;
+      }
     }
   }
 }
