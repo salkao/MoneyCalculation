@@ -85,8 +85,9 @@ watch(
 
 <style lang="scss">
 .circular-progress {
-  display: inline-block;
+  display: flex;
   width: 100%;
+  min-height: 0;
 
   .circle {
     position: relative;
