@@ -65,11 +65,6 @@ const emit = defineEmits(['save']);
 const categories = computed(() => store.getCategories);
 const isEditMode = computed(() => !!props.expense);
 
-const getToday = computed(() => {
-  const now = new Date();
-  return now.toISOString().split('T')[0];
-});
-
 const form = ref({
   name: props.expense?.name ?? '',
   category: props.expense?.category ?? '',
