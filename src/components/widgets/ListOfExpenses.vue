@@ -62,7 +62,9 @@ function handleCategorySelect(category: string) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
+    padding: 21px 0;
+    border-top: 1px solid $primary-color-light;
+    margin-top: 30px;
 
     .list-of-expenses-header-text {
       color: $button-primary-color;
