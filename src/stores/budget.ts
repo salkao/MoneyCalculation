@@ -237,4 +237,5 @@ export const useBudgetStore = defineStore('budget', {
       this.expenses = [];
     },
   },
+  persist: true,
 });
