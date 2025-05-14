@@ -45,6 +45,7 @@ function select(item: string) {
 </script>
 
 <style lang="scss">
+@use 'sass:color';
 .filter-dropdown {
   display: inline-flex;
   align-items: center;
@@ -86,7 +87,7 @@ function select(item: string) {
     position: absolute;
     top: calc(100% + 4px);
     left: 0;
-    background-color: darken($primary-color, 1%);
+    background-color: color.adjust($primary-color, $lightness: -1%);
     border: 1px solid $button-primary-color;
     border-radius: 4px;
     margin: 0;

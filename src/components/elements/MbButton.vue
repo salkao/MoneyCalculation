@@ -27,6 +27,8 @@ function onClick() {
 </script>
 
 <style lang="scss">
+@use 'sass:color';
+
 .mb-button {
   background-color: $button-primary-color;
   color: $primary-color;
@@ -41,7 +43,7 @@ function onClick() {
   justify-content: center;
 
   &:hover {
-    background-color: darken($button-primary-color, 5%);
+    background-color: color.adjust($button-primary-color, $lightness: -5%);
   }
 
   &.rounded {

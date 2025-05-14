@@ -73,6 +73,7 @@ function handleDelete() {
 </script>
 
 <style lang="scss">
+@use 'sass:color';
 // mobile
 .expense-item-container {
   display: flex;
@@ -83,7 +84,7 @@ function handleDelete() {
   cursor: pointer;
 
   &:hover {
-    background-color: darken($primary-color, 1%);
+    background-color: color.adjust($primary-color, $lightness: -1%);
   }
 
   .expense-item-container-left {
