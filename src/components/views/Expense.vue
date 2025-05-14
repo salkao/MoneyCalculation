@@ -17,17 +17,12 @@
           class="expense-input"
         />
         <div class="expense-select-wrapper">
-          <img
-            v-if="form.category"
-            :src="getCategoryIcon(form.category)"
-            :alt="form.category"
+          <MbDropdown
+            v-model="form.category"
+            :items="categories"
+            :placeholder="'Category'"
+            @select="form.category = $event"
           />
-          <select v-model="form.category" class="expense-select">
-            <option disabled value="">Category</option>
-            <option v-for="cat in categories" :key="cat" :value="cat">
-              {{ cat }}
-            </option>
-          </select>
         </div>
         <MbDatePicker
           v-model="form.date"
@@ -57,6 +52,8 @@ import MbInput from '@/components/elements/MbInput.vue';
 import MbButton from '@/components/elements/MbButton.vue';
 import { useBudgetStore } from '@/stores/budget';
 import MbDatePicker from '@/components/elements/MbDatePicker.vue';
+import MbDropdown from '@/components/elements/MbDropdown.vue';
+
 const props = defineProps<{
   expense?: Expense | null;
 }>();
@@ -119,6 +116,7 @@ function getCategoryIcon(category: string) {
 }
 
 function closeModal() {
+  store.setEditingExpenseId(null);
   store.setIsModalOpen(false);
 }
 </script>
@@ -166,7 +164,24 @@ function closeModal() {
         justify-content: center;
         height: 62px;
         width: 100%;
+        padding: 0;
         border-bottom: 2px solid $placeholder-color;
+
+        .filter-dropdown {
+          width: 100%;
+          border: none;
+          font-size: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 32px;
+
+          .dropdown {
+            .selected {
+              color: $placeholder-color;
+            }
+          }
+        }
 
         .expense-select {
           background: transparent;
