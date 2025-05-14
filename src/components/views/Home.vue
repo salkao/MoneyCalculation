@@ -8,7 +8,10 @@
             <h3 class="user-income-data">£{{ user.income }}</h3>
           </template>
           <template #main>
-            <CircularProgress :value="totalExpensesPercentage" />
+            <CircularProgress
+              :value="totalExpensesPercentage"
+              :color="progressBarColor"
+            />
             <div class="mb-card-container">
               <MbCard
                 class="green"
@@ -72,6 +75,17 @@ const availableBalance = computed(
 
 const totalExpensesPercentage = computed(() => {
   return ((store.getTotalExpenses / store.getUser.income) * 100).toFixed(0);
+});
+
+const progressBarColor = computed(() => {
+  switch (true) {
+    case Number(totalExpensesPercentage.value) < 50:
+      return '#51D289';
+    case Number(totalExpensesPercentage.value) < 75:
+      return '#FFE600';
+    default:
+      return '#F44336';
+  }
 });
 
 function handleSaveExpense(expense: Expense) {
