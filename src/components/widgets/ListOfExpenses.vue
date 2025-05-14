@@ -122,6 +122,10 @@ function handleCategorySelect(category: string) {
     .list-of-expenses-list {
       overflow-y: auto;
     }
+
+    .list-of-expenses-empty {
+      margin: auto 0;
+    }
   }
 }
 </style>
