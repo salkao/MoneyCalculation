@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const props = defineProps({
+defineProps({
   modelValue: String,
   placeholder: String,
   type: {
