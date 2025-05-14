@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" class="mb-button">
+  <button @click="onClick" class="mb-button" :class="{ disabled: disabled }">
     <img v-if="icon" :src="resolveIconPath(icon)" alt="icon" />
     {{ label }}
   </button>
@@ -16,6 +16,11 @@ defineProps({
     type: String,
     required: false,
     default: '',
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
@@ -60,6 +65,11 @@ function onClick() {
 
   &.error {
     color: $error-color;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    background-color: $button-disabled-color !important;
   }
 }
 </style>
