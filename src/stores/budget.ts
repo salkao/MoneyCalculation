@@ -28,102 +28,11 @@ export const useBudgetStore = defineStore('budget', {
   state: (): BudgetState => ({
     user: {
       name: 'Salkao',
-      income: 2700,
-      goals: 100,
+      income: 0,
+      // amount of money that the user wants to save
+      goals: 0,
     },
-    expenses: [
-      {
-        id: '1',
-        name: 'Expense 1',
-        category: 'food',
-        date: '2021-01-01',
-        amount: 100,
-      },
-      // {
-      //   id: '2',
-      //   name: 'Expense 2',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '3',
-      //   name: 'Expense 3',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '4',
-      //   name: 'Expense 4',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '5',
-      //   name: 'Expense 5',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '6',
-      //   name: 'Expense 6',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '7',
-      //   name: 'Expense 7',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '8',
-      //   name: 'Expense 8',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '9',
-      //   name: 'Expense 9',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '10',
-      //   name: 'Expense 10',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '11',
-      //   name: 'Expense 11',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '12',
-      //   name: 'Expense 12',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-      // {
-      //   id: '13',
-      //   name: 'Expense 13',
-      //   category: 'food',
-      //   date: '2021-01-01',
-      //   amount: 100,
-      // },
-    ],
+    expenses: [],
 
     // Expense categories & filter
     categories: [
