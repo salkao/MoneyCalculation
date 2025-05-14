@@ -13,6 +13,7 @@
       </div>
       <div class="header-actions-container">
         <MbButton
+          :icon="'plus'"
           :disabled="availableBalance <= 0"
           label="New Expense"
           class="new-expense-button"
@@ -92,13 +93,22 @@ function openModal() {
       margin-top: 14px;
 
       .new-expense-button {
+        z-index: 20;
         font-weight: 600;
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: 30px;
+        right: 30px;
         width: 48px;
         height: 48px;
         border-radius: 50%;
+
+        img {
+          display: block;
+        }
+
+        span {
+          display: none;
+        }
       }
 
       .user-button {
@@ -190,6 +200,13 @@ function openModal() {
           position: static;
           width: 223px;
           height: 48px;
+
+          img {
+            display: none;
+          }
+          span {
+            display: block;
+          }
         }
 
         .user-button {
