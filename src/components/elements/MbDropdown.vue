@@ -1,9 +1,9 @@
 <template>
   <div class="filter-dropdown">
-    <span class="filter-label">{{ label }}</span>
+    <span v-if="label" class="filter-label">{{ label }}</span>
     <div class="dropdown" @click="toggleDropdown">
       <span class="selected">{{ selected }}</span>
-      <span class="arrow">▼</span>
+      <span v-if="showArrow" class="arrow">▼</span>
     </div>
     <ul v-if="isOpen" class="dropdown-menu">
       <li
@@ -25,12 +25,15 @@ const emit = defineEmits<{
   (e: 'select', item: string): void;
 }>();
 
-defineProps<{
+const props = defineProps<{
   items: string[];
-  label: string;
+  label?: string;
+  showArrow?: boolean;
+  modelValue?: string;
+  placeholder?: string;
 }>();
 
-const selected = ref('All');
+const selected = ref(props.modelValue || props.placeholder || 'All');
 const isOpen = ref(false);
 
 function toggleDropdown() {
@@ -38,6 +41,7 @@ function toggleDropdown() {
 }
 
 function select(item: string) {
+  if (item === props.placeholder) return;
   selected.value = item;
   isOpen.value = false;
   emit('select', item);
