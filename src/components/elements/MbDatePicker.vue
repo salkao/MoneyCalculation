@@ -57,7 +57,7 @@ function openPicker() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .date-input {
   position: relative;
   display: flex;
