@@ -4,6 +4,7 @@
       <span class="list-of-expenses-header-text">Description</span>
       <MbDropdown
         :items="['all', ...store.getCategories]"
+        :showArrow="true"
         label="Filter Expenses"
         @select="handleCategorySelect"
       />
