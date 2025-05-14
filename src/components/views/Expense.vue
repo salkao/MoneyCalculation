@@ -28,12 +28,9 @@
           </option>
         </select>
       </div>
-      <MbInput
+      <MbDatePicker
         v-model="form.date"
-        :placeholder="'Date'"
         class="expense-input"
-        type="date"
-        :modelValue="getToday"
         :min="getCurrentMonthFirstDay"
         :max="getCurrentMonthLastDay"
       />
@@ -57,7 +54,7 @@ import type { Expense } from '@/stores/budget';
 import MbInput from '@/components/elements/MbInput.vue';
 import MbButton from '@/components/elements/MbButton.vue';
 import { useBudgetStore } from '@/stores/budget';
-
+import MbDatePicker from '@/components/elements/MbDatePicker.vue';
 const props = defineProps<{
   expense?: Expense | null;
 }>();
@@ -74,10 +71,10 @@ const getToday = computed(() => {
 });
 
 const form = ref({
-  name: props.expense?.name || '',
-  category: props.expense?.category || '',
-  date: props.expense?.date || getToday.value,
-  amount: props.expense?.amount?.toString() || '',
+  name: props.expense?.name ?? '',
+  category: props.expense?.category ?? '',
+  date: props.expense?.date,
+  amount: props.expense?.amount?.toString() ?? '',
 });
 
 const getCurrentMonthFirstDay = computed(() => {
@@ -100,6 +97,13 @@ function handleSubmit() {
     !form.value.amount
   )
     return;
+  // check if the expense can be added
+  if (Number(form.value.amount) > store.getAvailableBalance) {
+    alert(
+      'Unable to add this expense: The total expenses would exceed your available income.'
+    );
+    return;
+  }
   emit('save', {
     ...props.expense,
     name: form.value.name,
