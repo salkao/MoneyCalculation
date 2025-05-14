@@ -1,50 +1,52 @@
 <template>
   <div class="expense-form-container">
-    <h1>{{ isEditMode ? 'Edit Expense' : 'New Expense' }}</h1>
-    <img
-      src="@/assets/icons/icon-close.svg"
-      alt="close"
-      class="close-icon"
-      height="40"
-      width="40"
-      @click="closeModal"
-    />
-    <form @submit.prevent="handleSubmit" class="expense-form">
-      <MbInput
-        v-model="form.name"
-        :placeholder="'Name'"
-        class="expense-input"
+    <div class="expense-form-container-content">
+      <h1>{{ isEditMode ? 'Edit Expense' : 'New Expense' }}</h1>
+      <img
+        src="@/assets/icons/icon-close.svg"
+        alt="close"
+        class="close-icon"
+        height="40"
+        width="40"
+        @click="closeModal"
       />
-      <div class="expense-select-wrapper">
-        <img
-          v-if="form.category"
-          :src="getCategoryIcon(form.category)"
-          :alt="form.category"
+      <form @submit.prevent="handleSubmit" class="expense-form">
+        <MbInput
+          v-model="form.name"
+          :placeholder="'Name'"
+          class="expense-input"
         />
-        <select v-model="form.category" class="expense-select">
-          <option disabled value="">Category</option>
-          <option v-for="cat in categories" :key="cat" :value="cat">
-            {{ cat }}
-          </option>
-        </select>
-      </div>
-      <MbDatePicker
-        v-model="form.date"
-        class="expense-input"
-        :min="getCurrentMonthFirstDay"
-        :max="getCurrentMonthLastDay"
-      />
-      <MbInput
-        v-model="form.amount"
-        :placeholder="'Amount'"
-        class="expense-input"
-        type="number"
-      />
-      <MbButton
-        :label="isEditMode ? 'Save Expense' : 'Add Expense'"
-        class="expense-submit-btn"
-      />
-    </form>
+        <div class="expense-select-wrapper">
+          <img
+            v-if="form.category"
+            :src="getCategoryIcon(form.category)"
+            :alt="form.category"
+          />
+          <select v-model="form.category" class="expense-select">
+            <option disabled value="">Category</option>
+            <option v-for="cat in categories" :key="cat" :value="cat">
+              {{ cat }}
+            </option>
+          </select>
+        </div>
+        <MbDatePicker
+          v-model="form.date"
+          class="expense-input"
+          :min="getCurrentMonthFirstDay"
+          :max="getCurrentMonthLastDay"
+        />
+        <MbInput
+          v-model="form.amount"
+          :placeholder="'Amount'"
+          class="expense-input"
+          type="number"
+        />
+        <MbButton
+          :label="isEditMode ? 'Save Expense' : 'Add Expense'"
+          class="expense-submit-btn"
+        />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -126,58 +128,73 @@ function closeModal() {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   color: $primary-color-light;
   position: relative;
   background-color: $primary-color;
-  padding: 106px 27px;
   width: 100%;
+  height: calc(100% - 24px);
 
-  .close-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-  }
-
-  h1 {
-    font-size: 36px;
-    margin-bottom: 84px;
-    font-weight: normal;
-    color: $primary-color-light;
-  }
-  .expense-form {
+  .expense-form-container-content {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    gap: 32px;
+    align-items: center;
 
-    .expense-select-wrapper {
-      position: relative;
+    .close-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 84px;
+      font-weight: normal;
+      color: $primary-color-light;
+    }
+    .expense-form {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 62px;
-      width: 100%;
-      border-bottom: 2px solid $placeholder-color;
+      flex-direction: column;
+      width: 400px;
+      gap: 32px;
 
-      .expense-select {
-        background: transparent;
-        border: none;
-        color: $primary-color-light;
-        font-size: 30px;
-        outline: none;
-        text-align: center;
-        appearance: none;
-        text-transform: capitalize;
-        width: fit-content;
-        option {
-          color: $primary-color;
+      .expense-select-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 62px;
+        width: 100%;
+        border-bottom: 2px solid $placeholder-color;
+
+        .expense-select {
+          background: transparent;
+          border: none;
+          color: $primary-color-light;
+          font-size: 30px;
+          outline: none;
+          text-align: center;
+          appearance: none;
+          text-transform: capitalize;
+          width: fit-content;
+          option {
+            color: $primary-color;
+          }
         }
       }
     }
+    .expense-submit-btn {
+      margin-top: 32px;
+    }
   }
-  .expense-submit-btn {
-    margin-top: 32px;
+}
+
+// desktop
+@media (min-width: 1024px) {
+  .expense-form-container {
+    width: fit-content;
+    padding: 0 27px;
   }
 }
 </style>
