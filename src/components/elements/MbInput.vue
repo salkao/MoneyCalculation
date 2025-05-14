@@ -56,7 +56,7 @@ function onInput(event: Event) {
     background: transparent;
     border: none;
     border-bottom: 2px solid $placeholder-color;
-    color: $primary-color-light;
+    color: $placeholder-color;
     font-size: 30px;
     font-weight: normal;
     padding-bottom: 26px;
