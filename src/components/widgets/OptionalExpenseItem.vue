@@ -6,6 +6,7 @@
     <h3 class="optional-expense-item-name">{{ expense.name }}</h3>
     <MbButton
       @click="handleSaveExpense"
+      :disabled="!isAddingExpensePossible"
       label="select"
       class="optional-expense-item-button rounded"
     />
@@ -13,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { Expense as ExpenseType } from '@/stores/budget';
 import { resolveIconPath } from '@/utilities/resolveIconPath';
 import MbButton from '@/components/elements/MbButton.vue';
@@ -24,7 +26,15 @@ const props = defineProps<{
 
 const store = useBudgetStore();
 
+const isAddingExpensePossible = computed(() => {
+  return store.getTotalExpenses + props.expense.amount <= store.getUser.income;
+});
+
 const handleSaveExpense = () => {
+  // check if adding expense is possible
+  if (!isAddingExpensePossible.value) {
+    return;
+  }
   store.saveExpense({
     ...props.expense,
     /*
