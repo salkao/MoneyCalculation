@@ -21,6 +21,7 @@
             v-model="form.category"
             :items="categories"
             :placeholder="'Category'"
+            :icon="categoryIcon"
             @select="form.category = $event"
           />
         </div>
@@ -63,6 +64,9 @@ const emit = defineEmits(['save']);
 
 const categories = computed(() => store.getCategories);
 const isEditMode = computed(() => !!props.expense);
+const categoryIcon = computed(() =>
+  form.value.category ? getCategoryIcon(form.value.category) : undefined
+);
 
 const form = ref({
   name: props.expense?.name ?? '',

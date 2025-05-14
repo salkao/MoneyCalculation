@@ -2,6 +2,7 @@
   <div class="filter-dropdown">
     <span v-if="label" class="filter-label">{{ label }}</span>
     <div class="dropdown" @click="toggleDropdown">
+      <img v-if="icon" :src="icon" :alt="icon" class="dropdown-icon" />
       <span class="selected">{{ selected }}</span>
       <span v-if="showArrow" class="arrow">▼</span>
     </div>
@@ -31,6 +32,7 @@ const props = defineProps<{
   showArrow?: boolean;
   modelValue?: string;
   placeholder?: string;
+  icon?: string;
 }>();
 
 const selected = ref(props.modelValue || props.placeholder || 'All');
@@ -72,6 +74,10 @@ function select(item: string) {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
+
+    .dropdown-icon {
+      margin-right: 8px;
+    }
 
     .selected {
       color: $button-primary-color;
