@@ -53,7 +53,7 @@ function onClick() {
   }
 
   &.success {
-    color: $success-color;
+    color: $highlight-color;
   }
 
   &.error {
