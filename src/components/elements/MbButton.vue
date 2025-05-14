@@ -1,7 +1,7 @@
 <template>
   <button @click="onClick" class="mb-button" :class="{ disabled: disabled }">
     <img v-if="icon" :src="resolveIconPath(icon)" alt="icon" />
-    {{ label }}
+    <span>{{ label }}</span>
   </button>
 </template>
 
