@@ -18,7 +18,11 @@
                 title="Available"
                 :value="availableBalance"
               />
-              <MbCard title="Spent" :value="store.getTotalExpenses" />
+              <MbCard
+                title="Spent"
+                :value="store.getTotalExpenses"
+                :class="{ red: totalExpensesPercentage > 75 }"
+              />
             </div>
           </template>
           <template #footer>
@@ -77,12 +81,12 @@ const store = useBudgetStore();
 const isModalOpen = computed(() => store.getIsModalOpen);
 const expense = computed(() => store.getEditingExpense);
 const user = computed(() => store.getUser);
-const availableBalance = computed(
-  () => store.getUser.income - store.getTotalExpenses
-);
+const availableBalance = computed(() => store.getAvailableBalance);
 
 const totalExpensesPercentage = computed(() => {
-  return ((store.getTotalExpenses / store.getUser.income) * 100).toFixed(0);
+  return Number(
+    ((store.getTotalExpenses / store.getUser.income) * 100).toFixed(0)
+  );
 });
 
 const progressBarColor = computed(() => {
