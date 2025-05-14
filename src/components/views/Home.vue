@@ -31,7 +31,7 @@
         </Box>
         <Box :title="'Optionals'" :content-title="'choose any fix expenses'">
           <template #content>
-            <div class="box-content-data">
+            <div class="list-of-optional-expenses">
               <OptionalExpenseItem
                 v-for="expense in store.getOptionalExpenses"
                 :key="expense.id"
@@ -40,7 +40,14 @@
             </div>
           </template>
           <template #footer>
-            <h2 class="box-title goals-title">Goals</h2>
+            <div class="goals-container">
+              <h2 class="box-title goals-title">Goals</h2>
+              <!-- this is the percentage that user wants to save this month -->
+              <span class="goals-percentage">
+                "Save {{ goalPercentage }}% of this amount endered this mounth
+                from my salary"
+              </span>
+            </div>
           </template>
         </Box>
       </div>
@@ -59,6 +66,7 @@ import Header from '@/components/widgets/Header.vue';
 import ListOfExpenses from '@/components/widgets/ListOfExpenses.vue';
 import Expense from '@/components/views/Expense.vue';
 import { useBudgetStore } from '@/stores/budget';
+import type { Expense as ExpenseType } from '@/stores/budget';
 import Box from '@/components/widgets/Box.vue';
 import OptionalExpenseItem from '@/components/widgets/OptionalExpenseItem.vue';
 import CircularProgress from '@/components/widgets/CircularProgress.vue';
@@ -88,11 +96,16 @@ const progressBarColor = computed(() => {
   }
 });
 
-function handleSaveExpense(expense: Expense) {
-  store.saveExpense({ id: expense.id || nanoid(), ...expense });
+function handleSaveExpense(expense: ExpenseType) {
+  store.saveExpense({ ...expense, id: expense.id || nanoid() });
   store.setEditingExpenseId(null);
   store.setIsModalOpen(false);
 }
+
+// this is the percentage that user wants to save this month
+const goalPercentage = computed(() => {
+  return (store.getUser.goals / store.getUser.income) * 100;
+});
 </script>
 
 <style lang="scss">
@@ -135,10 +148,10 @@ function handleSaveExpense(expense: Expense) {
         font-size: 19px;
       }
 
-      .box-content-data {
+      .list-of-optional-expenses {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 23px;
         margin-top: 24px;
         width: 100%;
       }
@@ -152,6 +165,13 @@ function handleSaveExpense(expense: Expense) {
         border-top: $border-dotted;
         padding-top: 13px;
       }
+    }
+
+    .goals-percentage {
+      border-left: 4px solid $highlight-color;
+      padding-left: 10px;
+      font-size: 11px;
+      font-weight: 700;
     }
   }
 }
@@ -181,13 +201,31 @@ function handleSaveExpense(expense: Expense) {
       flex: 1;
       padding-bottom: 87px;
       padding-top: 56px;
+      // fix this with flex
+      height: calc(100% - 178px - 87px - 56px);
 
       .home-content-container-data {
         flex: 1;
         gap: 42px;
 
         .box {
-          height: fit-content;
+          display: flex;
+          flex-direction: column;
+
+          .box-content {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            .list-of-optional-expenses {
+              flex: 1 1 auto;
+              overflow: auto;
+            }
+          }
+
+          .goals-container {
+            margin: auto 0;
+          }
         }
 
         .user-income-data {
@@ -196,6 +234,10 @@ function handleSaveExpense(expense: Expense) {
 
         .mb-button-reset {
           font-size: 21px;
+        }
+
+        .mb-card-container {
+          margin: auto 0;
         }
       }
     }
