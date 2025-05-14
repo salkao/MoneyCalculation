@@ -34,6 +34,7 @@ import { computed, ref } from 'vue';
 import { useBudgetStore } from '@/stores/budget';
 import { resolveIconPath } from '@/utilities/resolveIconPath';
 import MbButton from '@/components/elements/MbButton.vue';
+import type { Expense } from '@/stores/budget';
 
 const props = defineProps<{
   expense: Expense;
@@ -43,7 +44,7 @@ const store = useBudgetStore();
 const showActions = ref(false);
 
 const formattedDate = computed(() => {
-  const date = new Date(props.expense.date);
+  const date = new Date(props.expense.date ?? '');
   const month = date.toLocaleString('default', { month: 'long' });
   const day = date.getDate();
   const year = date.getFullYear();
