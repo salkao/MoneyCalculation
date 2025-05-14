@@ -13,6 +13,7 @@
       </div>
       <div class="header-actions-container">
         <MbButton
+          :disabled="availableBalance <= 0"
           label="New Expense"
           class="new-expense-button"
           @click="openModal"
@@ -37,6 +38,7 @@ const store = useBudgetStore();
 const user = computed(() => store.getUser);
 const userName = computed(() => user.value.name);
 const buttonLabel = computed(() => `Welcome ${userName.value}`);
+const availableBalance = computed(() => store.getAvailableBalance);
 
 function openModal() {
   store.setIsModalOpen(true);
