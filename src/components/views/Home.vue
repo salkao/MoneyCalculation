@@ -205,8 +205,7 @@ const goalPercentage = computed(() => {
       flex: 1;
       padding-bottom: 87px;
       padding-top: 56px;
-      // fix this with flex
-      height: calc(100% - 178px - 87px - 56px);
+      overflow: hidden;
 
       .home-content-container-data {
         flex: 1;
