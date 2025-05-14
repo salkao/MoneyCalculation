@@ -52,15 +52,15 @@ import { ref } from 'vue';
 const store = useBudgetStore();
 const router = useRouter();
 
-const income = ref(null);
-const name = ref(null);
-const goals = ref(null);
+const income = ref('');
+const name = ref('');
+const goals = ref('');
 
 function startCalculation() {
   store.setUser({
     name: name.value,
-    income: income.value,
-    goals: goals.value,
+    income: Number(income.value),
+    goals: Number(goals.value),
   });
   router.push('/home');
 }
@@ -81,6 +81,7 @@ function startCalculation() {
 
     &.left {
       background: $secondary-color;
+      display: none;
 
       img {
         margin-top: auto;
@@ -92,7 +93,7 @@ function startCalculation() {
       align-items: center;
 
       .welcome-box-content {
-        margin-top: 196px;
+        margin-top: 25%;
         flex-direction: column;
         justify-content: space-between;
       }
@@ -133,10 +134,21 @@ function startCalculation() {
 
     .welcome-title {
       &.italic {
-        margin: 245px 291px 73px 55px;
+        margin-top: 30%;
         font-style: italic;
         font-weight: 400;
         font-size: 42px;
+      }
+    }
+  }
+}
+
+// desktop
+@media (min-width: 1024px) {
+  .welcome-container {
+    .welcome-box {
+      &.left {
+        display: flex;
       }
     }
   }
