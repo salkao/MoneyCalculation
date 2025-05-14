@@ -112,6 +112,13 @@ function handleCategorySelect(category: string) {
   .list-of-expenses-container {
     flex: 1;
     padding: 0 0 0 32px;
+
+    .list-of-expenses-header {
+      border: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
     .list-of-expenses-list {
       overflow-y: auto;
     }
