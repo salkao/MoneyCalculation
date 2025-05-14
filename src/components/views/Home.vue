@@ -176,6 +176,7 @@ const goalPercentage = computed(() => {
       padding-left: 10px;
       font-size: 11px;
       font-weight: 700;
+      display: block;
     }
   }
 }
@@ -228,6 +229,10 @@ const goalPercentage = computed(() => {
 
           .goals-container {
             margin: auto 0;
+
+            .goals-percentage {
+              font-size: 13px;
+            }
           }
         }
 
