@@ -91,15 +91,19 @@ function startCalculation() {
     &.right {
       background: $primary-color;
       align-items: center;
+      justify-content: center;
 
       .welcome-box-content {
-        margin-top: 25%;
         flex-direction: column;
         justify-content: space-between;
       }
 
       .welcome-title-container {
         color: $primary-color-light;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .welcome-form {
