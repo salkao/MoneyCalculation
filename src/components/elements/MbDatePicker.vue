@@ -1,9 +1,11 @@
 <!-- src/components/DateInput.vue -->
 <template>
   <div @click="openPicker" class="date-input">
-    <span class="date-input-display">{{
-      modelValue ? displayDate : placeholder
-    }}</span>
+    <span
+      class="date-input-display"
+      :class="{ 'date-input-display-placeholder': !modelValue }"
+      >{{ modelValue ? displayDate : placeholder }}</span
+    >
     <input
       ref="dateInput"
       class="date-input-picker"
@@ -69,6 +71,10 @@ function openPicker() {
   .date-input-display {
     font-size: 30px;
     display: inline-block;
+
+    &.date-input-display-placeholder {
+      color: $placeholder-color;
+    }
   }
 
   &::after {
