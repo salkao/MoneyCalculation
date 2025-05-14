@@ -193,6 +193,12 @@ export const useBudgetStore = defineStore('budget', {
     getTotalExpenses: (state) => {
       return state.expenses.reduce((acc, expense) => acc + expense.amount, 0);
     },
+    getAvailableBalance: (state) => {
+      return (
+        state.user.income -
+        state.expenses.reduce((acc, expense) => acc + expense.amount, 0)
+      );
+    },
   },
 
   actions: {
