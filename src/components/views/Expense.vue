@@ -53,13 +53,13 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { Expense } from '@/stores/budget';
+import type { Expense } from '@/stores/budget';
 import MbInput from '@/components/elements/MbInput.vue';
 import MbButton from '@/components/elements/MbButton.vue';
 import { useBudgetStore } from '@/stores/budget';
 
 const props = defineProps<{
-  expense?: Expense;
+  expense?: Expense | null;
 }>();
 
 const store = useBudgetStore();
