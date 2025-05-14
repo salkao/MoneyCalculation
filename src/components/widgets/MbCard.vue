@@ -32,7 +32,7 @@ defineProps<{
 
   &.red {
     .mb-card-value {
-      color: $button-primary-color;
+      color: $error-color;
     }
   }
 
