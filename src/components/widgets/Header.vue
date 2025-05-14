@@ -158,6 +158,13 @@ function openModal() {
           position: absolute;
           padding: 10px 0;
           top: 0;
+
+          img {
+            display: none;
+          }
+          span {
+            display: block;
+          }
         }
       }
     }
